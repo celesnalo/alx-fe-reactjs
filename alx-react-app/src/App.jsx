@@ -11,7 +11,7 @@ function App() {
       <WelcomeMessage />
       <Header />
       <MainContent />
-      <UserProfile name="Mthobisi Snalo Cele" age="21" bio="Loves transforming designs into responsive and user friendly websites" />
+      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       <Footer />
     </>
   )
