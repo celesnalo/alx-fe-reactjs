@@ -1,5 +1,5 @@
 import WelcomeMessage from './components/WelcomeMessage'
-import Main from './components/Main'
+import MainContent from './components/MainContent'
 import Header from './components/Header'
 import './App.css'
 import UserProfile from './components/UserProfile'
@@ -11,7 +11,7 @@ function App() {
     <>
       <WelcomeMessage />
       <Header />
-      <Main />
+      <MainContent />
       <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       <Footer />
     </>
