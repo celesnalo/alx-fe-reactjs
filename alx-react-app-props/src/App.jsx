@@ -1,11 +1,14 @@
+import React, { useState } from 'react';
 import ProfilePage from "./components/ProfilePage";
-import { UserProvider } from './UserContext';
+import { UserContext } from './UserContext';
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
-    <UserProvider>
+    <UserContext.Provider value={{ user, setUser }}>
       <ProfilePage />
-    </UserProvider>
+    </UserContext.Provider>
   );
 }
 
