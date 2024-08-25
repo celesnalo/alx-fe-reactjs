@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters input {
+  display: block;
+  width: calc(100% - 22px);
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
