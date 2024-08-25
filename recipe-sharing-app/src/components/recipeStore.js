@@ -1,64 +1,41 @@
 import create from 'zustand';
 
-const useRecipeStore = create((set) => ({
+const useRecipeStore = create(set => ({
   recipes: [],
-  searchTerm: '',
-  filteredRecipes: [],
+  favorites: [],
+  recommendations: [],
 
-  // Action to set the search term
-  setSearchTerm: (term) => set(
-    (state) => {
-      const filtered = state.recipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(term.toLowerCase())
-      );
-      return {
-        searchTerm: term,
-        filteredRecipes: filtered,
-      };
-    }
-  ),
-
-  // Action to filter recipes based on the search term
-  filterRecipes: () => set((state) => ({
-    filteredRecipes: state.recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-    ),
+  // Action to add a recipe to favorites
+  addFavorite: (recipeId) => set(state => ({
+    favorites: [...state.favorites, recipeId]
   })),
 
-  // Action to add a new recipe
-  addRecipe: (newRecipe) => set((state) => {
-    const updatedRecipes = [...state.recipes, newRecipe];
-    return {
-      recipes: updatedRecipes,
-      filteredRecipes: updatedRecipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      ),
-    };
-  }),
+  // Action to remove a recipe from favorites
+  removeFavorite: (recipeId) => set(state => ({
+    favorites: state.favorites.filter(id => id !== recipeId)
+  })),
 
-  // Action to update an existing recipe
-  updateRecipe: (updatedRecipe) => set((state) => {
-    const updatedRecipes = state.recipes.map((recipe) =>
-      recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+  // Action to generate recommendations based on favorites
+  generateRecommendations: () => set(state => {
+    // Mock implementation: Recommend recipes with IDs similar to favorites or based on some criteria
+    const recommended = state.recipes.filter(recipe =>
+      state.favorites.includes(recipe.id) && Math.random() > 0.5
     );
-    return {
-      recipes: updatedRecipes,
-      filteredRecipes: updatedRecipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      ),
-    };
+    return { recommendations: recommended };
   }),
 
-  // Action to delete a recipe
-  deleteRecipe: (id) => set((state) => {
-    const updatedRecipes = state.recipes.filter((recipe) => recipe.id !== id);
-    return {
-      recipes: updatedRecipes,
-      filteredRecipes: updatedRecipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      ),
-    };
-  }),
+  // Update the recipe list (could be used for initialization)
+  setRecipes: (recipes) => set({ recipes }),
+
+  // Update the search term and filtered recipes
+  searchTerm: '',
+  setSearchTerm: (term) => set({ searchTerm: term }),
+  filteredRecipes: [],
+  filterRecipes: () => set(state => ({
+    filteredRecipes: state.recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+    )
+  }))
 }));
 
 export default useRecipeStore;
