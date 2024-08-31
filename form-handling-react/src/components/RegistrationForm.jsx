@@ -15,8 +15,8 @@ const RegistrationForm = () => {
             tempErrors.username = "";
         }
     
-        if (!email.includes('@') || !email.includes('.')) {
-            tempErrors.email = "Email must contain '@' and '.'";
+        if (!email) {
+            tempErrors.email = "Email required";
         } else {
             tempErrors.email = "";
         }
