@@ -8,13 +8,28 @@ const RegistrationForm = () => {
 
     const validate = () => {
         const tempErrors = {};
-        tempErrors.username = username ? "" : "Username required!!!";
-        tempErrors.email = email.includes('@') && email.includes('.') ? "" : "Email must contain '@' and '.'";
-        tempErrors.password = password ? "" : "Password required!";
+    
+        if (!username) {
+            tempErrors.username = "Username required!!!";
+        } else {
+            tempErrors.username = "";
+        }
+    
+        if (!email.includes('@') || !email.includes('.')) {
+            tempErrors.email = "Email must contain '@' and '.'";
+        } else {
+            tempErrors.email = "";
+        }
+    
+        if (!password) {
+            tempErrors.password = "Password required!";
+        } else {
+            tempErrors.password = "";
+        }
         setErrors(tempErrors);
         return Object.values(tempErrors).every(x => x === "");
     };
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
