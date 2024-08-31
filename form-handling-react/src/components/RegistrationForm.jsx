@@ -1,14 +1,14 @@
 const { useState } = require("react");
 
 const RegistrationForm = () => {
-    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
 
     const validate = () => {
         const tempErrors = {};
-        tempErrors.name = name ? "" : "Username required!!!";
+        tempErrors.username = username ? "" : "Username required!!!";
         tempErrors.email = email.includes('@') && email.includes('.') ? "" : "Email must contain '@' and '.'";
         tempErrors.password = password ? "" : "Password required!";
         setErrors(tempErrors);
@@ -27,10 +27,10 @@ const RegistrationForm = () => {
             <label htmlFor="username">Username: </label>
             <input 
                 type="text" 
-                value={name} 
-                onChange={(e) => setName(e.target.value)} 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
             />
-            {errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
+            {errors.name && <p style={{color: 'red'}}>{errors.username}</p>}
 
             <label htmlFor="email">Email: </label>
             <input 
