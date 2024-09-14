@@ -13,6 +13,7 @@ const HomePage = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold mb-6">Recipe Sharing Platform</h1>
+      <Link to="/add-recipe" className="text-blue-500 underline mb-4">Add New Recipe</Link>
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
             <Link key={item.id} to={`/recipe/${item.id}`}>
