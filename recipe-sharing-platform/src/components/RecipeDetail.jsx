@@ -21,11 +21,21 @@ const RecipeDetail = () => {
       <h1 className="text-4xl font-bold mb-4">{recipe.title}</h1>
       <img src={recipe.image} alt={recipe.title} className="rounded-lg w-full h-72 object-cover mb-4" />
       <p className="text-gray-600 mb-4">{recipe.summary}</p>
+      
       <div className="bg-white p-4 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
-        {}
+        <ul className="list-disc list-inside">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+
         <h2 className="text-2xl font-semibold mt-4 mb-2">Instructions</h2>
-        {}
+        <ol className="list-decimal list-inside">
+          {recipe.instructions.map((instruction, index) => (
+            <li key={index}>{instruction}</li>
+          ))}
+        </ol>
       </div>
     </div>
   );
