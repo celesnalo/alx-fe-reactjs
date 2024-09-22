@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const Search = () => {
@@ -7,8 +7,7 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const fetchUserData = async (username) => {
     setIsLoading(true);
     try {
       const response = await axios.get(`https://api.github.com/users/${username}`);
@@ -23,6 +22,13 @@ const Search = () => {
       }
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username.trim()) {
+      fetchUserData(username);
     }
   };
 
