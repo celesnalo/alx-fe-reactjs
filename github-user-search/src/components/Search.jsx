@@ -16,7 +16,12 @@ const Search = () => {
       setError(null);
     } catch (error) {
       setUserData(null);
-      setError(error.message);
+      // Check if error is due to user not being found
+      if (error.response && error.response.status === 404) {
+        setError("Looks like we can't find the user");
+      } else {
+        setError(error.message);
+      }
     } finally {
       setIsLoading(false);
     }
