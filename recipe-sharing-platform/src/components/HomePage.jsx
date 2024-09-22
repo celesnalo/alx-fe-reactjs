@@ -6,9 +6,15 @@ const HomePage = () => {
 
   useEffect(() => {
     fetch('/data.json')
-      .then(response => response.json())
-      .then(data => setRecipes(data));
-  }, []);
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => setRecipes(data))
+      .catch(error => setError(error.message));
+    }, []);
 
   return (
     <div className="container mx-auto p-4">
